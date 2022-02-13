@@ -8,4 +8,4 @@ We are glad, you have found your way to Libre Train Sim.
 
 ► You want to make your own trains? Our [mod documentation](manual/mods/) holds valuable information for you. This is also a great place for track builders to find information about more sophisticated topics.
 
-► You want to get involved in the development? Being it [translations](contribute/translations/) or [code contributions](contribute/code/) every support we can get is appreciated.
+► You want to get involved in the development? Being it [translations](contribute/translations.md) or [code contributions](contribute/code/) every support we can get is appreciated.
