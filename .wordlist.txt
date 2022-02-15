@@ -3,3 +3,5 @@ don'ts
 unintuitive
 trainsim
 npc
+thuringia
+maglev

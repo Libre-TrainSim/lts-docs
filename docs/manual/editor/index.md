@@ -1,6 +1,6 @@
 # Track Creation
 
-This step-by-step guide aids through the track creation process. If you need help at any point, please head over to [Discord](https://discord.gg/AQdAtZZ) or create a new [issue](https://github.com/Libre-TrainSim/Libre-TrainSim/issues/new). There is not a single stupid question. Just unintuitive design and bad documentation.
+This step-by-step guide aids through the track creation process. If you need help at any point, please head over to [Discord](https://discord.gg/AQdAtZZ) or create a new [issue](https://github.com/Libre-TrainSim/lts-docs/issues/new). There is not a single stupid question. Just unintuitive design and bad documentation.
 
 !!! Note
 
@@ -9,7 +9,7 @@ This step-by-step guide aids through the track creation process. If you need hel
 	In an ideal world, this guide would not be necessary but we are not yet at this point. 
 
 ## Content
-1. [General Track Concept](https://github.com/Libre-TrainSim/Libre-TrainSim/wiki/General-Track-Concept)
+1. [General Track Concept](general-track-concept.md)
 2. [Getting Started, Preparing World](https://github.com/Libre-TrainSim/Libre-TrainSim/wiki/Getting-Started,-Preparing-your-World)
 3. [Dos and Don'ts: General Information](https://github.com/Libre-TrainSim/Libre-TrainSim/wiki/Dos-and-Don'ts:-General-Information)
 4. [Building Rails](https://github.com/Libre-TrainSim/Libre-TrainSim/wiki/Building-Rails)
