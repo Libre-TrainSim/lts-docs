@@ -1,9 +1,26 @@
-site_name: Libre Train Sim documentation
+# Project information
+site_name: Libre TrainSim documentation
+site_description: Documentation for Libre TrainSim
+site_author: Libre TrainSim documentation contributers
+site_url: https://libretrainsim.org/
+
+# Repository information
+repo_name: lts-docs
+repo_url: https://github.com/Libre-TrainSim/lts-docs/
+
 theme:
   name: readthedocs #'rtd-dropdown'
 
 plugins:
   - search
+  - awesome-pages
+
+# We need some special navigation overrides to clean the sidebar up a little bit.
+# Refer to https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin for an overview of the available features.
+nav:
+  - Home: index.md
+  - ...
+
 
 # Cheatsheet: https://stephane-cheatsheets.readthedocs.io/en/latest/misc/readthedocs_mkdocs/
 
