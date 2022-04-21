@@ -51,7 +51,7 @@ Most readers probably already know what they want to build. Sadly, the more impo
 
 !!! warning
 
-	That is impossible out of the box and requires a special setup using Godot, mod tools, the editing path put to `res://`, and constant switching between the in-game editor and Godot.
+	The following is impossible out of the box and requires a special setup using Godot, mod tools, the editing path put to `res://`, and constant switching between the in-game editor and Godot. To reenable this workflow, there needs to be a special feature devloped.
 
 !!! note "Docs merging note"
 
