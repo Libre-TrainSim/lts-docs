@@ -4,7 +4,7 @@ This step-by-step guide aids through the track creation process. If you need hel
 
 !!! Note
 
-	This guide originates from the old, 0.8 track creation. In the meantime many things have been improved while others may got worse. We appreciate any feedback, we can get.
+	This guide originates from the old, 0.8 track creation. In the meantime many things have been improved while others may got worse. We appreciate any feedback we can get.
 	
 	In an ideal world, this guide would not be necessary but we are not yet at this point. 
 
