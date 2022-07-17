@@ -1,4 +1,3 @@
-Updated for: v0.8
 # Getting started
 
 ## Download and Installation:
