@@ -1,5 +1,10 @@
 # Setup of NPC Trains
 
+!!! note "Docs merging note"
+    Falls together with the previous article. Since the workflow changed, I imagine they don't longer need to be seperate articles if the system spawns trains automatically.
+
+    Screenshot outdated. Language and content not verified.
+
 NPC trains are configured per scenario. Make sure to read [this article](10-scenario-setup.md) before adding any NPC train.
 
 **The npc trains are defined only for driving at the track! This should not used, if the train has only to stand somewhere the whole time.**
@@ -8,7 +13,7 @@ NPC trains are configured per scenario. Make sure to read [this article](10-scen
 For that define a name for the NPC train, and click on 'New'. 
 But you could also click on 'Duplicate' if you want, so you may not add a whole timetable or route. 
 
-![1](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/master/Documentation/Images/NPCTrains/1.png)
+![1](11-imgs/1.png)
 
 ## Settings
 If you see, the settings are very similar to the settings of the player train.
@@ -21,7 +26,7 @@ The train will spawn at his start rail with the defined parameters as *Direction
 
 ## Example:
 
-![2](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/master/Documentation/Images/NPCTrains/2.png)
+![2](11-imgs/2.png)
 
 I want a train which drives in to a station, will halt, open the doors, departs, and despawns at a rail (green line in figure above).
 1. First I create a new train, and define the route. 
@@ -31,7 +36,7 @@ I want a train which drives in to a station, will halt, open the doors, departs,
 5. Now I define the timetable of the train. I want only to halt at Röthenbach2 for some time until 11:00:30, and want to drive him further on. The Arrival Time at npc trains could be ignored.
 6. **I click on 'Save Train'**
 
-![3](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/master/Documentation/Images/NPCTrains/3.png)
+![3](11-imgs/3.png)
 
 7. Now I configure the signals, over which the train will drive. (With pressing 'Load Signal Data form current Scenario' before and pressing 'Save current Signal Data to scenario' after.
 8. Test it out! If there are any problems, you can fly around in the scene by pressing 0 Ingame.

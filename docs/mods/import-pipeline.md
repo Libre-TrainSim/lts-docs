@@ -1,4 +1,7 @@
-Updated for: v0.8
+# Import pipeline
+
+!!! note "Docs merging note"
+    Needs revisit. The info given here is partly false.
 
 First of all: Which types of own content is currently supported?
 - Any type of landscape object without animations, without lights
@@ -19,12 +22,12 @@ Save .obj files to `res://Resources/YourTrackName/Objects/`, .blend files to `re
 Resources you use for a train, you should save directly in the "Train Folder". For more details read the Train Article.
 
 ## Lighting
-Lighting is a big problem in GoDot/Libre TrainSim, because the engine currently can only handle 8 Light sources for an object / Track Object. So try to use as few lights as possible! Importing lights from 3D Software is not tested. It is highly recommended to light your world separately from the objects with the lights of godot.
+Lighting is a big problem in Godot/Libre TrainSim, because the engine currently can only handle 8 Light sources for an object / Track Object. So try to use as few lights as possible! Importing lights from 3D Software is not tested. It is highly recommended to light your world separately from the objects with the lights of godot.
 
 **How to add lights:**
 Make sure the `Buildings` Node is selected, and press `Ctrl a` or the plus at the top of the item list. Then Search for "light". OmniLights are very recommended. Spotlights are okay too, but in the most cases you wont need them. 
 
-![1](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/ImportingSelfMadeObjects/1.png)
+![1](https://github.com/Libre-TrainSim/Libre-TrainSim/blob/master/Documentation/Images/ImportingSelfMadeObjects/1.png)
 
 *Make sure, that these lights will be direct childs of the `Buildings` Node. Currently there comes no automatism with it, which looks after it.*
 

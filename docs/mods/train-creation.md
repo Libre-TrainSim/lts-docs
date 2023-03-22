@@ -1,6 +1,9 @@
 # Train Creation
 
-**Attention: This topic is very complex, you need some basic programming skills. Also basic knowledge about the GoDot Engine is required. It is recommended, to get in touch to Libre TrainSim first while building a track.**
+!!! note "Docs merging note"
+    Content and language not verified. Screenshots, assets and links need updating. Also someone should verify the info and try creating a new train.
+
+**Attention: This topic is very complex, you need some basic programming skills. Also basic knowledge about the Godot Engine is required. It is recommended, to get in touch to Libre TrainSim first while building a track.**
 
 You can download an example [here](https://www.server-jean.de/LibreTrainSim/JFR-1.zip).
 We won't do a step by step tutorial, because every train works differntly, and has other features.
@@ -8,7 +11,7 @@ We won't do a step by step tutorial, because every train works differntly, and h
 ## General:
 A train is handled in a normal single .tscn file (=a single scene). It cointains 3D Models an lights of every wagon, the basic funtionality, and specific scripting. Because of its 'raw' implementation it is possible to add e.g. complete new security systems, and much more. So modding is 'very easy'.
 
-All files can be stored in a single folder. It is very important to download and set up the Editor. -> You can look in [this article](https://github.com/Jean28518/Libre-TrainSim/wiki/Getting-Started,-Preparing-your-World) if you don't know how to do. Under "Trains" you can then create a new folder. In there create a new scene, which save name is equal to the name, how the Train-Name is displayed in LibreTrainSim Menu. For example: `ICE4.tscn`.
+All files can be stored in a single folder. It is very important to download and set up the Editor. -> You can look in [this article](https://github.com/Libre-TrainSim/Libre-TrainSim/wiki/Getting-Started,-Preparing-your-World) if you don't know how to do. Under "Trains" you can then create a new folder. In there create a new scene, which save name is equal to the name, how the Train-Name is displayed in LibreTrainSim Menu. For example: `ICE4.tscn`.
 
 If you don't understand something feel free to explore, and modify the example above. Of course it's okay to reuse some files of the example for your own train!
 
@@ -23,7 +26,7 @@ LODs are currently not supported.
 - A FrontLight Node: (Simple 3D/Spatial Node) called `FrontLight`. Should be self explaining. In it there should be attached two spot lights. Here are some default-settings: ![1](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/master/Documentation/Images/CreatingTrains/1.png) They should be "turned on" in the scene.
 - A CabinLight Node: (Simple 3D/Spatial Node) called `CabinLight`. Works like the the FrontLightNode. Please remind that this is only for the drivers-stand.
 
-**The Problem with the lights** Because of limitations from GoDot Libre TrainSim doesn't support Lights for the passenger rooms. With GoDot 4.0 this will be fixed.
+**The Problem with the lights** Because of limitations from Godot Libre TrainSim doesn't support Lights for the passenger rooms. With Godot 4.0 this will be fixed.
 
 ## Train Attributes:
 All important settings can be set at the `Player` Node in the Inspector. Here you find very many variables: ![2](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/master/Documentation/Images/CreatingTrains/2.png)

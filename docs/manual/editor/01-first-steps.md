@@ -89,7 +89,7 @@ Now we now should have a plan (.png) where to place some rails and where to plac
 
 	We can either store images in a central `img` folder or store them next to the page. Personally, I'd prefer the latter.
 
-![Example Image](map_example.png)
+![Example Image](01-imgs/map_example.png)
 
 ## Height maps
 

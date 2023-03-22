@@ -1,5 +1,9 @@
 # Rail Logic
 
+!!! note "Docs merging note"
+    Feels like a good reference article. Less so in a step by step guide though. Language and content not verified. Screenshots outdated.
+    I feel like we should also present all the different signalling systems on another page.
+
 ## Basics
 Why are signals, train stations, speed limits, and contact points handled in one article? Because technically they are very similar, and work all same. 
 
@@ -19,28 +23,28 @@ So what similarities do they all have together?
     - Station.tscn
     - WarnSpeedLimit.tscn
 
-![1](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/master/Documentation/Images/Signals/1.png)
+![1](07-imgs/1.png)
 
 - Select the signal in the 3D View, and then you could define in the Inspector the rail position and the direction.
 
-![2](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/Signals/2.png)
+![2](07-imgs/2.png)
 
 - In my case I set it to the following properties. My rail is 135 m long:
 
-![3](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/Signals/3.png)
+![3](07-imgs/3.png)
 
 Great! You now know the basics about signals points. 
 
 ## 'Normal Signals':
 Since version 0.8 you can create your own visual instances for signals and can specify the path under `Visual Instance Path` of a signal. For creating own visual instances for signals an article will follow.
 
-![4](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/Signals/4.png)
+![4](07-imgs/4.png)
 
 So well, the basic function of a signal is very very easy. Its the status variable: Is the status set to 0, the signal is red, and no train should pass. If the status is set to 1, then its green or orange, and the train can pass the signal. 
 
 With the `Set Pass At ...`  Variables you can define a time, when the signal sets its status to 1. That is very useful at signals at a station. *(This could happen just one time ingame. Generally it is recommended just to use this functions for the "Player" train.)* 
 
-![5](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/Signals/5.png)
+![5](07-imgs/5.png)
 
 In This example the signal is set to status = 1 at 14:30:00 or 02:30:00 pm. 
 
@@ -57,7 +61,7 @@ Also you can define a speed limit in km/h which should be applied, if the train 
 ## Contact Points:
 What does a Contact Point? If a (optional: specific) train drives over it, the contact point activates (optional: after some seconds) a signal, end set it to a defined status and speed. With that feature complex Signal Processes are possible. 
 
-![6](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/Signals/6.png)
+![6](07-imgs/6.png)
 
 - **Affected Signal**: The Signal Name in the scene tree of the Affected Signal.
 - **By Specific Train**: If the Contact point should be activated by a specific Train. (Name of it). If every train, who drives over it, should activate this point, that variable has to be empty.
@@ -76,7 +80,7 @@ First of all: At the moment it is not easy/possible to change the signals look o
 Very simple:
 If a train drives over it, the speed limit which is set in the variable `Speed` will be applied. It shouldn't/can't be changed Ingame, because it is a static sign ;)
 
-![7](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/Signals/7.png)
+![7](07-imgs/7.png)
 
 ## Warn Speed Limit:
 First of all: At the moment it is not easy/possible to change the signals look or model. That will be implemented for version 0.8.

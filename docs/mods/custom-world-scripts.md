@@ -1,7 +1,7 @@
 # Custom World Scripts
 
 !!! danger
-	We plan to remove the feature in this form. It is just bad in about every way possible.
+	We plan to remove the feature in this form. It is just bad in about every way possible. Maybe just drop the page? Undocumented stuff doesn't exist :)
 
 It is also possible to add some custom code, like used at tutorials. It is a bit hacky, but the concept is very simple. This can be very powerful.
 

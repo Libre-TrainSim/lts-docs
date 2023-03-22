@@ -1,5 +1,10 @@
 # Export and Publish
 
+!!! note "Docs merging note"
+    New workflow, too. Also let's replace the Google Form with a GH Link to a new repo in preparation for a mod portal.
+
+    Content and language not verified.
+
 So if your complete track is finished, let's export it!
 
 **Please save and unload all chunks in the 'World Configuration' Tab before exporting!**
@@ -8,15 +13,15 @@ So if your complete track is finished, let's export it!
 
 Select 'Project' -> 'Export...'. 
 
-![1](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/master/Documentation/Images/ExportingAndReleasingTrack/1.png)
+![1](12-imgs/1.png)
 
 As seen below I don't have any export template downloaded. If this message shows up, click on 'Manage Export Templates', and download the appropriate export template. That cloud take a lot time.
 
-![2](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/master/Documentation/Images/ExportingAndReleasingTrack/2.png)
+![2](12-imgs/2.png)
 
 After that you have to reopen 'Project' -> 'Export...'. Then add a new Template as seen below.
 
-![3](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/master/Documentation/Images/ExportingAndReleasingTrack/3.png)
+![3](12-imgs/3.png)
 
 Give it an appropriate name.
 
@@ -29,7 +34,7 @@ Now define in the tab 'Resources':
 
 In the end it should look like this:
 
-![4](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/60cb45d17c7ded28484fb67c965f330dd35faf35/Documentation/Images/ExportingAndReleasingTrack/track_export_presets.png)
+![4](12-imgs/track_export_presets.png)
 
 Now click on `Export PCK/Zip` at the bottom of the window, select any folder (for example your own Downloads folder), and name it YourTrackName.pck.
 
@@ -37,7 +42,7 @@ Now click on `Export PCK/Zip` at the bottom of the window, select any folder (fo
 
 If it looks similar to the figure below, click 'Save' in the end.
 
-![5](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/master/Documentation/Images/ExportingAndReleasingTrack/5.png)
+![5](12-imgs/5.png)
 
 After few seconds the export is finished, and you can test your packed track out in the real Libre TrainSim! 
 
@@ -64,13 +69,13 @@ So before uploading your track you should pack a source.zip file. In it there sh
 
 Example of a source.zip file:
 
-![6](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/master/Documentation/Images/ExportingAndReleasingTrack/6.png)
+![6](12-imgs/6.png)
 
 ## Uploading
 
 So in the end you should have these files:
 
-![7](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/master/Documentation/Images/ExportingAndReleasingTrack/7.png)
+![7](12-imgs/7.png)
 
 Pack them to a zip-file, and upload them here: https://docs.google.com/forms/d/e/1FAIpQLSfWEB3gWOnqp9AoOlpxoZ2IdnbpTCr35xgMQSVgl9KEC0tiHw/viewform?usp=sf_link
 

@@ -1,5 +1,10 @@
 # Adding Landscape
 
+!!! note "Docs merging note"
+    This article is less about adding landscape and more about using the rail attachments thingy. While that's fine, we should also include docs about leveldesign and how to make the map nice. Think about guidance and how to make it memorable and nice looking.
+
+    Content and language not verified. Screenshots and workflow questionable.
+
 Now all your rails, Train Stations, and Signals should be final. (*Of course you could change/improve these later too, but it is easier if you from now only can focus on landscape building)*
 
 ## General:
@@ -27,28 +32,28 @@ Now all your rails, Train Stations, and Signals should be final. (*Of course you
 All Simple Objects/Mesh Instances are saved under the node Buildings. As usually they should be direct children of the nodes `Buildings` in the Scene Tree. 
 Let's add a simple House: At first Make sure, that another Simple Object, the `Buildings` Node, or the `World` Node is selected. For that drag and drop a .obj File of the `FileSystem` Tab into the Scene: 
 
-![1](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/LandscapeElements/1.png)
+![1](08-imgs/1.png)
 
 The building looks very crapy. Lets assign Materials to it. At first select in the `Inspector` Tab under `Mesh` `Make Unique`.
 
-![2](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/LandscapeElements/2.png)
+![2](08-imgs/2.png)
 
-Under `Material` you can now assign the materials. These Material Groups come defined with the .obj file *(I guess, maybe the .mtl file)*. For assigning a material, search for a material in the `FileSystem` tab. Under `res://Resources/Basic/Materials/` you will find some materials of Libre TrainSim, which are recommended to be used. If you don't find a material you need, you could create your own Material in GoDot, and save it under `/Resources/YourTrackName`. It would be great, if you could share that material with the community, that it maybe will be put to `/Resources/Basic` later. For material creating in GoDot read more Information [here](https://docs.godotengine.org/en/stable/tutorials/3d/spatial_material.html). 
+Under `Material` you can now assign the materials. These Material Groups come defined with the .obj file *(I guess, maybe the .mtl file)*. For assigning a material, search for a material in the `FileSystem` tab. Under `res://Resources/Basic/Materials/` you will find some materials of Libre TrainSim, which are recommended to be used. If you don't find a material you need, you could create your own Material in Godot, and save it under `/Resources/YourTrackName`. It would be great, if you could share that material with the community, that it maybe will be put to `/Resources/Basic` later. For material creating in Godot read more Information [here](https://docs.godotengine.org/en/stable/tutorials/3d/spatial_material.html). 
 
 If you found your Material, simply drag and drop it to the Material Slot. Repeat that until you are finished.
 
-![3](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/LandscapeElements/3.png)
+![3](08-imgs/3.png)
 
 Now you can position it with the Gizmos in the 3D View. If you don't see them. Make sure, the Object is selected, and you pressed `Q` In the End it will look like this:
 
-![4](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/LandscapeElements/4.png)
+![4](08-imgs/4.png)
 
 **Hint:** To duplicate the object, press `Ctrl D`
 
 ## Track Objects:
 For that there exists a Tool from Libre TrainSim. Probable you used it already for Train Stations. Select the Tab `Rail Attachments`. And select the rail, to which you want to assign the new Track Object, type a name in the text line and select `New`. After it select the new Track Object in the List. 
 
-![5](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/LandscapeElements/5.png)
+![5](08-imgs/5.png)
 
 Please have in mind: Never change a name of a Rail after adding some Track Object. You can find all Track Objects under the Node `TrackObjects`. Dont change any variable of them. Please just use the delivered tool for editing them. 
 
@@ -66,7 +71,7 @@ The Unit is meters.
 ### Object Positioning:
 Here comes the fun. You can do almost every setting:
 
-![6](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/LandscapeElements/6.png)
+![6](08-imgs/6.png)
 
 - **Side**: That is self explaining. Left and Right is mesured in the Rail direction. From green to red dot.
 - **Spacing Straight**: Distance between the objects in "rail direction". 
@@ -88,15 +93,15 @@ Here are some example configurations:
 
 **Some houses**::
 
-![7](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/LandscapeElements/7.png)
+![7](08-imgs/7.png)
 
 **Simple Forest**:
 
-![8](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/LandscapeElements/8.png)
+![8](08-imgs/8.png)
 
 **Poles**:
 
-![9](https://github.com/Jean28518/Libre-TrainSim/blob/master/Documentation/Images/LandscapeElements/9.png)
+![9](08-imgs/9.png)
 
 
 **Hint**: You are able to copy one or more track objects at the same time (select multiple with `Ctrl` pressed) between other track objects. That's very powerful and saves a lot of time.
