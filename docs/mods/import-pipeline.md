@@ -1,47 +1,47 @@
 # Import pipeline
 
-!!! note "Docs merging note"
-    Needs revisit. The info given here is partly false.
+This page introduces the import pipeline for LTS. It'll explain supported content, file strucutre, assets, and licensing.
 
-First of all: Which types of own content is currently supported?
-- Any type of landscape object without animations, without lights
-- Trains (head to "Trains" Article)
+## Supported content
 
-For now LOD Objects aren't supported
+ 1. 3D Objects (from landscape to bins to trains)
+ 2. Sound files
 
-## For what do you need to pay attention?
-- The best/only type of static 3D Object File Format you should use .obj
-- For animated objects (e.g. passengers) .gltf format was used. (with separate materials)
-- Try to reuse Materials! Under res://Resources/Basic/Materials/ you find many pre-configured Materials. The good aspect at them: They will be updated with newer versions, and will look nicer over the time. If you use your own materials, they won't be updated unless you will update your materials.
-- Of course you should pay attention to the vertex count of your object. 
-- It is highly recommended to use the metrics in the 3D Creation Programm too. Try to use real scales. -> That will it make much more easier.
+!!! warning
+    Level of Detail is currently not supported out of the box.
 
-## File Structure:
-Save .obj files to `res://Resources/YourTrackName/Objects/`, .blend files to `res://Resources/YourTrackName/Objects/`.
+!!! tip "Good practices"
+    - Prefer glTF as your primary export format.
+    - Use as much topology as required and as little as possible. If you are new to 3D modelling search for tutorials and guides that show *game-ready* workflows. A good chunk of videos on YouTube for Blender is made for *offline rendering, eg. film or artwork renders*. If the tutorial uses loop cuts to control the beveling of an edge, it's not probably not game-ready.
+    - Use proper scaling. One unit in Blender and Godot is one metre. In Maya, one unit is ten centimetres. The object should have a scale of one in Godot.
 
-Resources you use for a train, you should save directly in the "Train Folder". For more details read the Train Article.
+## File Structure
+
+Always keep your source assets as close as possible to the scene. If you are importing for use as rail attachments, you need to save the meshes in a dedicated folder.
 
 ## Lighting
-Lighting is a big problem in Godot/Libre TrainSim, because the engine currently can only handle 8 Light sources for an object / Track Object. So try to use as few lights as possible! Importing lights from 3D Software is not tested. It is highly recommended to light your world separately from the objects with the lights of godot.
 
-**How to add lights:**
-Make sure the `Buildings` Node is selected, and press `Ctrl a` or the plus at the top of the item list. Then Search for "light". OmniLights are very recommended. Spotlights are okay too, but in the most cases you wont need them. 
+When using glTF (or FBX by all means) lights can be created in your 3D content creation software. However lighting is not only a realistic component but also an artistic one. You should strive to use as few lights as possible but as many as required.
 
-![1](https://github.com/Libre-TrainSim/Libre-TrainSim/blob/master/Documentation/Images/ImportingSelfMadeObjects/1.png)
+!!! tip
+    Have a look at lighting in games and how lights work to guide attention. These are classic level design problems. As we don't have any level designer right now, you are probably better of researching the topic on your own.
 
-*Make sure, that these lights will be direct childs of the `Buildings` Node. Currently there comes no automatism with it, which looks after it.*
+## Materials
 
-## Materials:
-There are many Materials in the `Basics` folder. Try to reuse them as much as you can -> better performance ;). If you want to modify/add another material, you should create your own material and save it to `res://Resources/YourTrackName/Materials/`. For more information look [here](https://docs.godotengine.org/en/stable/tutorials/3d/spatial_material.html).
+For more information take a look [at the offical Godot documentation.](https://docs.godotengine.org/en/3.5/tutorials/3d/spatial_material.html).
+You want to use something like Substance Painter, Material Maker, or any other alternative you can find. Good materials go a long way in visual quality.
 
-## Reusing Objects:
-At most times it saves a lot time if you start modelling an object by modifying a existing similar object. Feel free to use .blend files, textures, and materials of the `Basic` folder any time. If you want to reuse some content of other authors, look to the LICENSE file in the authors folder, and check if you could do it. (Or just ask them ;) )
+!!! tip
+    You can read more about texel density if you are interested in the proper texture sizes. Also use channel packing to combine AO, roughness, and metallness maps to save VRAM.
 
-If you want to contribute to the `Basics` folder, just open a new issue on github or do a 
+## Objects
 
-## Licensing:
-Please add a `LICENSE` file to your author folder. Recommended Licenses for your content is: https://creativecommons.org/licenses/
+It's perfectly valid to start with existing objects and modify them to get to a coherent visual style. Please make sure you're complying with licenses.
 
-If you want to allow that anyone can do anything with your content, then [CC0](https://creativecommons.org/share-your-work/public-domain/cc0/) is the right license for you. For example the `Basics` folder has this license.
+## Licensing
+
+FOSS lives and breathes through sharable and open content. Thus, please ensure to properly credit the external content you used and share your content under a open license. Have a look at [Choose a license](https://choosealicense.com/) and [Creative Commons](https://creativecommons.org/licenses/) respectively.
+
+If you want to allow anyone do do about anything with your content, then [Creative Commons 0](https://creativecommons.org/share-your-work/public-domain/cc0/) is the right license for you. Most assets in the base game are licensed CC0.
 
 ### YouTube-Video: [Click Here](https://youtu.be/qZrul1Gagv8)
