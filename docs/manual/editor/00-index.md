@@ -12,16 +12,15 @@ This step-by-step guide aids through the track creation process. If you need hel
 
 1. [First steps](01-first-steps.md)
 2. [Getting started](02-getting-started.md)
-3. [General information](03-general-information.md)
-4. [Building rails](04-building-rails.md)
-5. [Quick and dirty test setup](05-quick-test-setup.md)
-6. [Station Setup](06-station-setup.md)
-7. [Rail Logic](07-rail-logic.md)
-8. [Adding Landscape Elements](08-adding-landscape.md)
-9.  [Basic World Configuration](09-world-configuration.md)
-10. [Scenario Settings](10-scenario-setup.md)
-11. [NPC Trains](11-npc-trains.md)
-12. [Exporting and Publishing Content](12-export-and-publish.md)
+3. [Building rails](04-building-rails.md)
+4. [Quick and dirty test setup](05-quick-test-setup.md)
+5. [Station Setup](06-station-setup.md)
+6. [Rail Logic](07-rail-logic.md)
+7. [Adding Landscape Elements](08-adding-landscape.md)
+8.  [Basic World Configuration](09-world-configuration.md)
+9. [Scenario Settings](10-scenario-setup.md)
+10. [NPC Trains](11-npc-trains.md)
+11. [Exporting and Publishing Content](12-export-and-publish.md)
 
 ## (Re)moved pages
 

@@ -55,7 +55,7 @@ Most readers probably already know what they want to build. Sadly, the more impo
 
 !!! note "Docs merging note"
 
-	We should probably rewrite all of that. I stopped here.
+	We should probably rewrite all of that. I stopped here. It would be nice to teach some level design practices here. This seems also to be a good point to talk about guidance. (Or rather joke about guidance)
 
 It is highly recommended, that you make yourself a plan how you build your track. *(No shit, Sherlock)*
 We will add a .png file to our floor of our track for orientating where to build tracks later.
