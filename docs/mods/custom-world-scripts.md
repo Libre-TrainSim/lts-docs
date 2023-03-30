@@ -1,13 +1,14 @@
 # Custom World Scripts
 
 !!! danger
-	We plan to remove the feature in this form. It is just bad in about every way possible. Maybe just drop the page? Undocumented stuff doesn't exist :)
+	This page is considered legacy. We will keep it around as a reference for this release but please do not rely on the information or the continued support. If you are interested in scenarios, please [help us drafting a new system](https://github.com/Libre-TrainSim/Libre-TrainSim/issues/new).
 
 It is also possible to add some custom code, like used at tutorials. It is a bit hacky, but the concept is very simple. This can be very powerful.
 
 For that you need some basics in GDScript, what you will unterstand in 5 minutes, if you have a bit programming experience, it's similar to python. Read [this article](https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_basics.html) for that.
 
 ## Adding Script
+
 First of all: The script itself is not scenario specific, but it can check itself, which scenario is currently running.. So let's add a script. Select the 'World' Node with right click, and select 'Add Child Node':
 
 ![1](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/master/Documentation/Images/CustomScripts/1.png)
@@ -32,31 +33,35 @@ In the end you should see a script symbol next to your new script node. Just cli
 
 ![6](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/master/Documentation/Images/CustomScripts/6.png)
 
-## Editing Script:
+## Editing Script
+
 For better editing press the fullscreen button of the main window:
 
 ![7](https://raw.githubusercontent.com/Jean28518/Libre-TrainSim/master/Documentation/Images/CustomScripts/7.png)
 
 Dont forget to save by pressing `Ctrl + S`.
 
-### Header:
-```
+### Header
+
+```gdscript
 extends Node
 
 onready var world = find_parent("World")
 onready var player = world.get_node("Players/Player")
 ```
+
 This code you will find at almost every component of modules from Libre TrainSim. These are the main components. 
 
 - The world node handles such components as chunk system, time, spawning other trains, scenario, etc. Also every single component like rails, trees, trains, signals, stations, etc. can be accessed via it. For example if I want to reference a signal then I write `var signal = world.get_node("Signals/SIGNALNAME")`. For scripting just further one variable is interesting: `world.time`. `world.time[0]` contains the hour, `world.time[1]` contains the minute, `world.time[2]` contains the second.
 - The player node is simply the player. It's the train, which the player drives. It drives over rails, handles the ingame HUD, messages, and stores much information like the timetable, speed, doors, ... You can find the player script for looking after variables under `res://addons/Libre_Train_Sim_Editor/Data/Scripts/Player.gd`. Only the first 100 lines should be interesting to you. 
 
-**BUT IT IS HIGHLY RECOMMENDED TO NOT CHANGE ANY OF THESE VARIABLES VIA SCRIPT, IF YOU DON'T NEED TO!** The game couldn't work correctly after it. 
+**BUT IT IS HIGHLY RECOMMENDED TO NOT CHANGE ANY OF THESE VARIABLES VIA SCRIPT, IF YOU DON'T NEED TO!** The game couldn't work correctly after it.
 
 - Some functions from [jTools](https://github.com/Jean28518/Godot-jTools) could be useful too. jTools is already integrated to Libre TrainSim. jAudioManager and jEssentials could be interesting for custom scripts.
 
 ### Stuff for specific scenarios
-```
+
+```gdscript
 var message = ""
 var step = 0
 var scenario = Root.currentScenario
@@ -73,25 +78,31 @@ func internal_stuff(delta):
     #....
 
 ```
-This handles the basic functionality. 
+
+This handles the basic functionality.
 
 So now let's add a function, which will handle one specific scenario from step to step.
 At first we to create a function:
-```
+
+```gdscript
 func scenario1():
     pass
 ```
+
 (You can remove `pass`, when you added something to the function). Now you need to call the function in `_process(delta)`:
-```
+
+```gdscript
 func _process(delta):
     internal_stuff(delta)
     if scenario == "ExactNameOfTheScenario":
         scenario1()
 ```
+
 Now the function is just called, if the player plays a specific scenario. *(For advanced scripting: Keep in mind, that the function is called every game cylce (about 60 times per second)*
 
 Now because of `internal_stuff()` some magic happens, and the code below will work like written in the comments:
-```
+
+```gdscript
 func scenario1():
 match step:
 		0:
@@ -106,13 +117,13 @@ match step:
 			message = "Last message of custom scenario. Thanks for playing!"
 ```
 
-So happy coding! 
+So happy coding!
 
 ***
 
 For example here is the code of the mobile tutorial function:
 
-```
+```gdscript
 func basics_mobile_version():
 	match step:
 		0:
@@ -198,4 +209,3 @@ func basics_mobile_version():
 			player.get_node("HUD/MobileHUD/DoorLeft").modulate = Color(1, 1, 1, 1)
 			player.get_node("HUD/MobileHUD/PauseButton").modulate = Color(1, 0.5, 0, 1)
 ```
-
