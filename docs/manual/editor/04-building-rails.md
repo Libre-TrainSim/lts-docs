@@ -1,200 +1,177 @@
 # Building Rails
 
-## Railbuilder
+This article introduces the various features that aid rail building.
 
-!!! danger "Update info"
-    Needs new screenshots. And a check if the stuff is still valid. Furtheremore Drag and Drop is partly implemented.
-
+You can move rails by dragging their end (red arrow). When dragged to another snapping point (red or green arrow), the editor can sometimes automatically insert a filler rail. However in most cases you'll need to tweak the numbers to create working switches.
 
 !!! note "Docs merging note"
     Language needs to be revised.
 
-Lets see which sections the RailBuilder has:
+!!! danger "Update info"
+    Needs new screenshots.
 
-![SectionsOfRailBuilder](04-imgs/SectionsOfRailBuilder.png)
+## Rail Builder
 
-1. Here you can rename the Rail, and delete it, if you want. 
-2. Here you can add a new Rail. There are Three Modes:
-    - *After Rail*: You simply add a new Rail after your current selected Rail. 
-    - *Parallel To*: Adding a Rail, which is parallel to the selected one. For more information look further down of this documentation.
-    - *Before Rail*: As `After Rail` But you add this Rail at the green dot of your Track, the Beginning.
-3. That are some only read variables. They show the world rotation of the rail, and the world height. Later this will be important for us
-4. Here you can define the Rail Type of a Rail. Just insert the path of the railtype.tscn in it. Example: `res://Resources/Basic/RailTypes/Road.tscn`
-5. Here you can define how much curved the Rail is and how long it is. There are three modes which all have two of these variables:
-    - *Length*: You can define how long the rail is (Maximum is 1000) (It is measured in meters)
-    - *Radius*: Here you can define how sharp the curve of the track is (Radius of the imagined Rail Circle) (It is measured in meters). 
-        - 100: very sharp
-        - 10000: almost staight
-        - 0: straight
-    - *Angle*: Here you can define how much the Rail will change its world rotation (It is measured in degrees). That is very helpful for building switches later.
-If you don't know which Mode is the best, I personally recommend 'Length - Radius' or 'Length - Angle'. I personally use 'Length - Angle' in the most cases in building rails.
-6. Here you can set the slope settings of the tracks. For more information look further down of this documentation. Just ignore this for now
-7. Here you can set the tendency settings of the tracks. For more information look further down of this documentation. Just ignore this for now
-8. To save and apply the Rail Configuration you have to press 'Update' **But for that there is no undo function!**
-9. Here is the rail connector. For more information look further down of this documentation. Just ignore this for now
+Let's start with an overview of the `RailBuilder`.
+
+![SectionsOfRailBuilder](04-imgs/SectionsOfRailBuilder.jpg)
+
+1. Rename or delete the rail. 
+2. Add a new rail in one of these modes:
+    - *After Rail* adds a rail after the currently selected one. 
+    - *Parallel To* adds a rail next to the currently selected rail. See the information below for more information.
+    - *Before Rail* adds a rail in front of the currently selected rail.
+3. Shows read-only stats of the rails rotation, position, and height.
+4. Defines the rail type.
+5. Defines the rails geometry. All rails have two of the three following parameters:
+    - *Length* sets the length of the rail up to a maximum of `1000` metres.
+    - *Radius* sets the curveture. A radius of 0 is treated as a straight rail. A value of 100 is very sharp whereas a value of 10000 is almost straight.
+    - *Angle* sets the change in rotation.
+6. Defines the slope of the rail.
+7. Defines the tendency of the rail.
+8. Press this `Update` button or `enter` in any field to apply changes. **There's no undo!**
+9.  Shows the calculated rail connections.
+
+!!! tip
+    The most used rail building mode is probably `Length - Angle` directly followed by `Length - Radius`.
 
 ![1](04-imgs/1.png)
 
-Also the function 'Manual Moving in Editor' exists. If activated, you can move the rail in the editor via the gizmos. So when deactivated you can't move the rail accidentally.
+`Manual Moving in Editor` prevents accidential movement of rails when deactivated.
 
 !!! warning "Weird UX"
-    right now this setting is saved individually for each rail.
+    Right now this setting is saved individually for each rail.
 
-## Basics in Rail Building:
-- Every Rail has a start and an end point. The green one is the start point, the red one the end point. ![SimpleRail](04-imgs/SimpleRail.png)
-- There's prelimary drag and drop support for rails when dragging there end arrow. Note though that most connections can't be made automatically.
-- The path finding for trains later goes over position searching. Also it will compare the rotations of the Rail. But both detections are having some tolerance, so a track which isn't to 100% perfect connected to a rail is also detected as connected. Here are some examples:
-    -  These Rails are well connected, the train will drive perfectly over it: ![WellConnected](04-imgs/WellConnected.png)
-    - These Rails are very messy connected, but the train should drive over it as well: ![NotWellConnectedButTrainWillDetectIt](04-imgs/2.png)
-    - The Position of both rails is perfect, but the rotation is too different. The train wont drive over this: ![NotConnected1](04-imgs/NotConnected1.png)
-    - The rotation of both rails is perfect, but the distance between them is to wide. So the train won't drive over this as well: ![NotConnected2](04-imgs/NotConnected2.png)
-- **Is there any other 'Connection' between the rails except the same location and rotation?** No, theres no further magic. The Route for all trains is gonna be calculated at every start of the game based on the location and rotation. 
-- **So how do switches work technically?** Libre TrainSim doesn't have real switches. Sure you can imagine how to build simple switches: Just by adding another Rail to the end of a rail. So in the end two or even more rails are "connected" to the end of a rail. Two define which direction of the switch a train should drive you tell him in his Route settings, which continuing rail he should take. If you dont "tell" it him, it simply takes the first one, he finds. But no fear, we will come to this later.
-- **My slope or tend doesn't match to the "connected" rail will that be a problem for Libre TrainSim?** No, it only uses rotation and location for rail finding. 
+## Basics in Rail Building
 
-Now you should be able to build a one way line witch curves. But lets get to some interesting points, the switches.
+Every rail has a start and an end arrow. The green one is the start point, the red one the end point. ![SimpleRail](04-imgs/SimpleRail.png)
+
+There's prelimary drag and drop support for rails when dragging their end arrow. Note though that most connections can't be made automatically.
+
+The route baking calculates connected rails at run-time by comparing the position and rotation of the rails. Here are some examples:
+
+- These rails are well connected. Trains can drive them perfectly. ![WellConnected](04-imgs/WellConnected.png)
+- These rails are messily connected but  trains can still use them. ![NotWellConnectedButTrainWillDetectIt](04-imgs/2.png)
+- The position of both rails is perfectly aligned but their rotation is too different. Trains cannot drive them ![NotConnected1](04-imgs/NotConnected1.png)
+- The rotation of both rails is perfect but the distance between them is too wide. Trains cannot use these, too. ![NotConnected2](04-imgs/NotConnected2.png)
+
+### Is there any other connection between the rails except the same location and rotation?
+
+No, there is no further magic. The routes are calculated every start of the game based on the rail locations and rotations.
+
+### How do switches work technically?
+
+Libre TrainSim does not have real switches. Switches are built by adding another rail to the end of a rail. That way multiple rails are connected.
 
 !!! note "Docs merging note"
     This info here is very good. Perhaps this should be moved to an easier findable position. It doesn't really make sense in a step by step guide.
 
-## Switches - How to build:
-### Basic Switch:
-- Determine where your switch should start. In my case it starts at an end point of a rail
-- I select the rail, and in the rail builder I select `After Rail` and `New Rail`. Now you should end up something like this:
+## Switch Recipes
 
-![BasicSwitch1](04-imgs/BasicSwitch1.png)
+Here, you'll find some blueprints for common switches.
 
-- Now select the first Rail, and add a new Rail after it again, change the Radius or Angle, and update it.
+!!! note "Docs merging note
+    We should add step by step gifs here.
 
-![BasicSwitch2](04-imgs/BasicSwitch2.png)
+### Basic Switch
 
-*Congratulations! You builded your first switch!
+1. Determine where your switch should start. Here it starts at the end.
+2. Select the rail and in the rail builder select `After Rail` and `New Rail`. You should end up something like this: ![BasicSwitch1](04-imgs/BasicSwitch1.png)
+3. Now select the first rail and add a new rail after it again. Change the radius or angle and update it. ![BasicSwitch2](04-imgs/BasicSwitch2.png)
 
-### Advanced Switch (splitting oneway to double way):
-- Start with a simple rail, add a rail after it, and adjust the length of it. (It will later be the length of the whole curve) For Example: 150m.
-- After that add a rail to the newly created Rail again. You sould noe end up like this:
+Congratulations! You built your first switch!
 
- ![AdvancedSwitch1_1](04-imgs/AdvancedSwitch1_1.png)
+### One-way to two-way switch
 
-- Select the third rail (newest) and add a parallel Rail to it, set the distance for ecample to 4.5
-- Select the new one, end press at the Rail Connector under Second Rail `Select` and choose `Beginning`
-- Select the very first rail, end press at the Rail Connector under First Rail `Select` and choose `End`
-- In the end select `Connect`
+1. Start with a straight rail, add a rail after it, and adjust the length of it. (It will later be the length of the whole curve) Start with something like 150 metres.
+2. Add another rail to the newly created rail. ![AdvancedSwitch1_1](04-imgs/AdvancedSwitch1_1.png)
+3. Select the newly created, third rail and add a parallel rail. Set the distance to something like `4.5` metres.
+4. Select the new one and create a new rail after it.
+5. Drag the end of the rail to the other beginning. A popup prompting to fix the rail connection opens.
+6. Click `OK`.
+7. The result should look like this: ![AdvancedSwitch1_3](04-imgs/AdvancedSwitch1_3.png)
 
- ![AdvancedSwitch1_2](04-imgs/AdvancedSwitch1_2.png)
+### Curved Switch
 
-- The result should look like this:
+1. Start with a rail, add one after it, and set its angle to `10` degrees and its length to `100` metres.
+2. Add another rail after, and add a parallel rail whith a distance of `-4.5` metres. ![AdvancedSwitch2_1](04-imgs/AdvancedSwitch2_1.png)
+3. Select the first rail, add another rail after it.
+4. Set the new rails angle to the same as the other switch leg (it's the value used in step one, so `10` in this example).
+5. Reduce the length as much as possible to create the longest straight line possible between the new leg and the other parallel rail. `45` metres seem good in this example. ![AdvancedSwitch2_2](04-imgs/AdvancedSwitch2_2.png)
+6. Connect both rails by dragging one end. ![AdvancedSwitch2_3](04-imgs/AdvancedSwitch2_3.png)
 
- ![AdvancedSwitch1_3](04-imgs/AdvancedSwitch1_3.png)
+### Double Cross
 
+1. Start with a straight rail and add three rails with the same length.
+2. Add another rail that can be as long as you want. 
+3. Add two parallel rails as shown. ![AdvancedSwitch3_1](04-imgs/AdvancedSwitch3_1.png)
+4. Connect rails one and two and rails three and four by dragging the rails. ![AdvancedSwitch3_2](04-imgs/AdvancedSwitch3_2.png)
+5. Connect rails five and six.
+6. Delete any unwanted rails. ![AdvancedSwitch3_3](04-imgs/AdvancedSwitch3_3.png)
 
-### Advanced Switch (In a Curve):
-- Start with a simple Rail, add a Rail after it, and set that for example to Angle: 10, Length: 100, add another Rail After it, and add a parallel Rail Whith the distance of -4.5 to it. In the End it should look like this:
+## Slope
 
-![AdvancedSwitch2_1](04-imgs/AdvancedSwitch2_1.png)
+!!! warning
+    This feature is unstable. Please notify us of any issues you come across.
 
-- Select the first Rail, add a rail after it, set the new rails angle to the same as the other switch leg. In my case 10. And reduce the length as much as a straight line could be layed between the new leg and the other parallel rail. A bit trial and error. In my case length 45 looks good:
+Rails can change height by changing their slope settings. Slopes are defined at the start and end points.
 
-![AdvancedSwitch2_2](04-imgs/AdvancedSwitch2_2.png)
-
-- In the end just connect the both rails with the Rail Connector. (as in the switch above described) And we get a nice curvy switch. **Attention: The Rail connector only works, if the rotation at the start end at the end are the same!!** In our case the end rotation of the first rail is 10, and the beginning rotation of the second one is 10. So it works perfectly:
-
-![AdvancedSwitch2_3](04-imgs/AdvancedSwitch2_3.png)
-
-### Advances Switch: Cross
-You wont learn anything new in here, but its good to know.
-
-- Start with a simple Rail, add 3 rails with the same distance (example 50) after it, and in the end the "end" rail, which could be as long as you want. After it ad some parallel rails (example distance 4.5) as shown below:
-
-![AdvancedSwitch3_1](04-imgs/AdvancedSwitch3_1.png)
-
-- Connect with the rail connector follwing rails: 1 and 2, 3 and 4.
-
-![AdvancedSwitch3_2](04-imgs/AdvancedSwitch3_2.png)
-
-- In the End connect 5 and 6 via the rail connector. You can now delete some Rails, if you want.
-
-![AdvancedSwitch3_3](04-imgs/AdvancedSwitch3_3.png)
-
-## Slope:
-You also are able to rise and fall rails. In the slope settings you can edit the slope of the rail at start and at end. Unlike other Train Simulators the slope is also calculated with circle functions, so the transition of an slope is very very soft. *(Except the slope change is very very low, then because of floats the slope isn't soft anymore. But you won't need it I guess)*
+!!! note
+    Slopes is calculated as a circle.
 
 ![Slope1](04-imgs/Slope1.png)
 
-Slope is also applied at parallel rails, and could be combined with tendency
+Slopes are also applied to parallel rails and can be combined with tendency.
 
-But that circle calculation of smooth slope brings problems with it: You cant control very good which height a rail reaches. *(Okay, theoretically we could, but for that you would need a big complex like the normal curves are handled in rails. with radius, rotation, length, angle, and much more. But that would be overpowered at this moment)* So let me show you an example, how you could control that at least a bit:
+!!! warning
+    The big issue with our slope implementation is controlling the height. While it's possible - as demonstrated in the rail curve settings - it is deemed unnecessarily complex right now. This stance may change in the future when terrain gets implemented.
 
-Add an Rail with length of 50, and set the start slope to 0, the end slope to 7. Add a rail after it and set its length to 200. If you see, the End Hight of the Rail is now 15.74646. We want to come to almost exact 20 meters height, so I add another rail after it, and set its end slope to 0. Then I reduce the length until the end height of almost 20 meters is reached. Thats trial and error In my case its about length = 122. In the end our track will look like this (Just ignore the right one, I only added it for better orientation)
+1. Add a `50` metres long rail and set the start slope to `0` and the end slope to `7`. 
+2. Add a rail behind and set its length to 200. 
+3. The end height of the rail is now `15.74646`. To get to almost exact 20 meters, add another rail and set its end slope to `0`.
+4. Reduce the length until the end height is reached.
 
 ![Slope2](04-imgs/Slope2.png)
 
-**Attention**: It is not recommended to build any switches or better formulated: Only parallel rails are supporting simultaneous slope. Also the rail connector doesn't support slopes too at the moment. Theoretically it is all possible but that's gonna be very messy at the moment.
+!!! warning
+    Do not build switches since parallel rails are the only ones supporting matched slopes. Drag and drop will not work either.
 
-## Tendency:
-If a train drives curves, then tracks are tended normally that the train could drive with higher speed.
-Libre TrainSim does support this almost simple. 
+    While you could tweak values until the rails work, it's going to be messy and a pain in the a...
 
-### Simple Tendency:
-We have an start tend and an end tend value. Just define them how you want, you should get the expected results.
-For example define a track as length 200, angle 10, start tend 4 and end tend 4. Great: 
+## Tendency
 
-![Tendency1](04-imgs/Tendency1.png)
+Train curves work because certain forces work against each other. Tilting helps to increase the inward force and as such allows curves to be driven faster.
 
-Also different values are no problem, just try it out.
+### Simple Tendency
 
-### Advanced Tendency:
-You could define some more "tendency points" at one track. Lets assume you have the following track:
+The tendency is defined by a start and end value. In this example the rail is 200 metres long and the tilt is set to `4` degrees at both start and end points. ![Tendency1](04-imgs/Tendency1.png)
+
+You need another rail in front and one behind that tilt into and out of the curve with this setup.
+
+### Advanced Tendency
+
+!!! tip
+    Use automatic tendency. It will ease your life significantly.
+
+    Manual setting of these values is considered bad UX and may be removed entirely in favor of the automatic approach. Please let us know if you have a non-covered use case.
+
+In the real world clothoids are used. They are special because they continously transition into the curve. Thus the tilt can also slowly transition. However as we don't have them, we have to tilt the adjacent rails or use the method described hereafter.
 
 ![AdvancedTendency1](04-imgs/AdvancedTendency1.png)
 
-What could we do if we want to have tendency in our curve, but wont affect the straight rails? For that we can define some additional tendency points which can be defined at the tendency settings too. If almost one of these points position is -1 then they are deactivated. Lets define the tend points like in the image below shown:
+You can use three or four tendency points to describe the transition, too. To use only three points, set the position of `Tend Point2` to `-1`. ![AdvancedTendency2](04-imgs/AdvancedTendency2.png)
 
-![AdvancedTendency2](04-imgs/AdvancedTendency2.png) 
+In this example we use two points. Since the curve is about a hundred metres long, we assert a fifth on each side for the transition. ![AdvancedTendency3](04-imgs/AdvancedTendency3.png)
 
-Why the start tend and end tend don't have any position, is obvious. Lets define tend 1 point. The curve is 100 m long, so lets set the tend point position to 20 (20 m). Thus tend 2 point position should be at 80.
-Lets set define the points such in the following image:
-
-![AdvancedTendency3](04-imgs/AdvancedTendency3.png) 
-
-And we have a wonderful result:
-
-![AdvancedTendency4](04-imgs/AdvancedTendency4.png) 
-
-**Automatic Tendency**: If you want nice tendency very fast, you could activate automatic tendency. Then the two inner tendency settings are calculated automatically. I am using this setting all the time.
-
-![Automatic Tendency](04-imgs/automatic_tendency.png)
+![AdvancedTendency4](04-imgs/AdvancedTendency4.png)
 
 ## Parallel Rails
-Maybe you used it already in building some switches. And maybe its complete easy for you how they work, but let me explain to you: If you create a parallel rail then this new rail is very special. It is attached to the "old" rail, and gets his all information from the "parent" rail. You just could adjust the parallel distance to it. That makes it very easy for building parallel tracks, and makes Libre TrainSim very powerful, but it also has it's special characteristics: 
-- If its "parent" rail is deleted, or even the name is changed, then the parallel rail becomes useless, because its "born" to be completely dependent to its parent rail.
-- Also the parallel status of this rail can't be changed. 
-- *(But in game it is for trains and all other modules a wholesome rail, but rather still depends internally to the parent rail)*
 
-## Rail Connector
-Probably you learned about it while creating some switches.
-But here are all important notes about it:
+!!! note "Docs merging note"
+    Still valid? Not revised.
 
-**Which Rails could I connect?**
-- The rails shouldn't be disanced more than 1000m. 
-- The rails should have the same rotation at the relevant ends. 
-- The rails should have the same height
-- The relevant rails shouldn't have any slope at the specific ends
-
-**How to connect two rails**:
-![RailConnector1](04-imgs/RailConnector1.png)
-1. Select the first rail
-2. Press in the rail connector at the fist rail `Select`
-3. Choose at the first rail `End` because, we want to connect here the red point (=End) of the rail.
-4. Choose the second rail
-5. Press in the rail connector at the second rail `Select`
-6. Choose at the second rail `Beginning` because, we want to connect here the green point (=Beginning) of the rail.
-7. Click Connect. Let the magic happen!
-
-![RailConnector2](04-imgs/RailConnector2.png)
-
-Hint: The rails which where added are completely wholesome, and can be treated as normal rails.
+Parallel rails are specially treated. They inherent their values from the linked rail. The only setting you can adjust is the offset to the linked rail. If the linked rail is deleted, the rail becomes useless and needs to be deleted, too.
 
 ---
 
-## YouTube Video: [Click Here](https://youtu.be/p0ycRpTUvfM)
+## [YouTube Video](https://youtu.be/p0ycRpTUvfM)
